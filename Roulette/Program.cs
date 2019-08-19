@@ -13,6 +13,8 @@ namespace Roulette
             g.WinningNumber();
             g.LowHigh();
             g.Thirds();
+
+            g.Row();
         }
     }
 }

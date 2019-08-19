@@ -12,7 +12,7 @@ namespace Roulette
         public void IsColor()
         {
             string color = "";
-            w.wheel.TryGetValue(b.ballLocation, out color);
+            w.wheel.TryGetValue(b.ballLocation, out color );
             Console.WriteLine($"{color} wins the bet");
         }
 
@@ -23,11 +23,11 @@ namespace Roulette
 
         public void EvenOrOdd()
         {
-            if (b.ballLocation % 2 == 0 && b.ballLocation != 38)
+            if(b.ballLocation %2 == 0 && b.ballLocation != 38)
             {
                 Console.WriteLine("Even Bets Win");
             }
-            else if (b.ballLocation % 2 != 0 && b.ballLocation != 37)
+            else if(b.ballLocation %2 != 0 && b.ballLocation!= 37)
             {
                 Console.WriteLine("Odd Bets Win");
             }
@@ -35,7 +35,7 @@ namespace Roulette
 
         public void LowHigh()
         {
-            if (b.ballLocation <= 18)
+            if(b.ballLocation <= 18)
             {
                 Console.WriteLine("Low Bets Win");
             }
@@ -48,7 +48,7 @@ namespace Roulette
         //Dozens: rowthirds,1–12,13–24,25–36
         public void Thirds()
         {
-            if (b.ballLocation <= 12)
+            if(b.ballLocation <= 12)
             {
                 Console.WriteLine($"Number {b.ballLocation} is in the first third row. First third row bets win");
             }
@@ -68,7 +68,7 @@ namespace Roulette
 
         public void Row()
         {
-            if (b.ballLocation <= 3)
+            if(b.ballLocation <= 3)
             {
                 Console.WriteLine("First Row Wins");
             }
