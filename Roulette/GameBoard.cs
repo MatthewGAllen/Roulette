@@ -21,8 +21,12 @@ namespace Roulette
             Console.WriteLine($"{b.ballLocation} is the winning number");
         }
 
-        
-
-       
+        public void EvenOrOdd()
+        {
+            if(b.ballLocation %2 ==0)
+            {
+                Console.WriteLine("Even Bets Win");
+            }
+        }
     }
 }
