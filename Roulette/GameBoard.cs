@@ -50,19 +50,87 @@ namespace Roulette
         {
             if(b.ballLocation <= 12)
             {
-                Console.WriteLine($"Number {b.ballLocation} is in the first row. First row bets win");
+                Console.WriteLine($"Number {b.ballLocation} is in the first third row. First third row bets win");
             }
             else if (b.ballLocation > 12 && b.ballLocation <= 24)
             {
-                Console.WriteLine($"Number {b.ballLocation} is in the second row. Second row bets win");
+                Console.WriteLine($"Number {b.ballLocation} is in the second third row. Second third row bets win");
             }
             else if (b.ballLocation > 24 && b.ballLocation <= 36)
             {
-                Console.WriteLine($"Number {b.ballLocation} is in the third row. Third row bets win");
+                Console.WriteLine($"Number {b.ballLocation} is in the third third row. Third third row bets win");
             }
             else if (b.ballLocation == 37 || b.ballLocation == 38)
             {
                 Console.WriteLine("Green Wins");
+            }
+        }
+
+        public void Row()
+        {
+            if(b.ballLocation <= 3)
+            {
+                Console.WriteLine("First Row Wins");
+            }
+
+            else if (b.ballLocation > 3 && b.ballLocation <= 6)
+            {
+                Console.WriteLine("Second Row Wins");
+            }
+
+            else if (b.ballLocation > 6 && b.ballLocation <= 9)
+            {
+                Console.WriteLine("Third Row Wins");
+            }
+
+            else if (b.ballLocation > 9 && b.ballLocation <= 12)
+            {
+                Console.WriteLine("Fourth Row Wins");
+            }
+
+            else if (b.ballLocation > 12 && b.ballLocation <= 15)
+            {
+                Console.WriteLine("Fifth Row Wins");
+            }
+
+            else if (b.ballLocation > 15 && b.ballLocation <= 18)
+            {
+                Console.WriteLine("Sixth Row Wins");
+            }
+
+            else if (b.ballLocation > 18 && b.ballLocation <= 21)
+            {
+                Console.WriteLine("Seventh Row Wins");
+            }
+
+            else if (b.ballLocation > 21 && b.ballLocation <= 24)
+            {
+                Console.WriteLine("Eighth Row Wins");
+            }
+
+            else if (b.ballLocation > 24 && b.ballLocation <= 27)
+            {
+                Console.WriteLine("Ninth Row Wins");
+            }
+
+            else if (b.ballLocation > 27 && b.ballLocation <= 30)
+            {
+                Console.WriteLine("Tenth Row Wins");
+            }
+
+            else if (b.ballLocation > 30 && b.ballLocation <= 33)
+            {
+                Console.WriteLine("Eleventh Row Wins");
+            }
+
+            else if (b.ballLocation > 33 && b.ballLocation <= 36)
+            {
+                Console.WriteLine("Twelfth Row Wins");
+            }
+
+            else if (b.ballLocation == 37 || b.ballLocation == 38)
+            {
+                Console.WriteLine("Green Row Wins");
             }
         }
     }
