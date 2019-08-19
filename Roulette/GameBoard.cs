@@ -137,6 +137,10 @@ namespace Roulette
         public void Column()
         {
             int column = b.ballLocation % 3;
+            if(column == 0)
+            {
+                column = 3;
+            }
             if(b.ballLocation < 37)
             {
                 Console.WriteLine($"Column {column} wins the bet");
