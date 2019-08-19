@@ -50,15 +50,15 @@ namespace Roulette
         {
             if(b.ballLocation <= 12)
             {
-                Console.WriteLine($"Number {b.ballLocation} is in the first third row. First third row bets win");
+                Console.WriteLine($"Number {b.ballLocation} is in the first third. First third bets win");
             }
             else if (b.ballLocation > 12 && b.ballLocation <= 24)
             {
-                Console.WriteLine($"Number {b.ballLocation} is in the second third row. Second third row bets win");
+                Console.WriteLine($"Number {b.ballLocation} is in the second third. Second third bets win");
             }
             else if (b.ballLocation > 24 && b.ballLocation <= 36)
             {
-                Console.WriteLine($"Number {b.ballLocation} is in the third third row. Third third row bets win");
+                Console.WriteLine($"Number {b.ballLocation} is in the third third. Third third bets win");
             }
             else if (b.ballLocation == 37 || b.ballLocation == 38)
             {
@@ -131,6 +131,23 @@ namespace Roulette
             else if (b.ballLocation == 37 || b.ballLocation == 38)
             {
                 Console.WriteLine("Green Row Wins");
+            }
+        }
+
+        public void Column()
+        {
+            int column = b.ballLocation % 3;
+            if(b.ballLocation < 37)
+            {
+                Console.WriteLine($"Column {column} wins the bet");
+            }
+            else if(b.ballLocation == 37)
+            {
+                Console.WriteLine("0 wins over columns");
+            }
+            else if(b.ballLocation == 38)
+            {
+                Console.WriteLine("00 wins over columns");
             }
         }
     }
