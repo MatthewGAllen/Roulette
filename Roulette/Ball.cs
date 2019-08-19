@@ -6,7 +6,7 @@ namespace Roulette
 {
     class Ball 
     {
-        public int ballLocation { get; set; }
+        public int ballLocation { get;}
         public Ball()
         {
             Random r = new Random();
