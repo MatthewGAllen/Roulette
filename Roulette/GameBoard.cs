@@ -7,23 +7,36 @@ namespace Roulette
     class GameBoard
     {
         Wheel w = new Wheel();
-        Ball b = new Ball();
-
-        public void IsColor()
+        
+        int cash;
+        public GameBoard (Player player)
         {
+            cash=player.Money;
+        }
+        public void IsColor(string s)
+        {
+            Ball b = new Ball();
             string color = "";
             w.wheel.TryGetValue(b.ballLocation, out color );
-            Console.WriteLine($"{color} wins the bet");
+
+            if (s == color)
+                cash += 100;
+            else
+                cash -= 100;
+
+            Console.WriteLine($"{color} wins the bet, you have {cash}");
         }
 
         public void WinningNumber()
         {
+            Ball b = new Ball();
             Console.WriteLine($"{b.ballLocation} is the winning number");
         }
 
         public void EvenOrOdd()
         {
-            if(b.ballLocation %2 == 0 && b.ballLocation != 38)
+            Ball b = new Ball();
+            if (b.ballLocation %2 == 0 && b.ballLocation != 38)
             {
                 Console.WriteLine("Even Bets Win");
             }
@@ -35,7 +48,8 @@ namespace Roulette
 
         public void LowHigh()
         {
-            if(b.ballLocation <= 18)
+            Ball b = new Ball();
+            if (b.ballLocation <= 18)
             {
                 Console.WriteLine("Low Bets Win");
             }
@@ -48,7 +62,8 @@ namespace Roulette
         //Dozens: rowthirds,1–12,13–24,25–36
         public void Thirds()
         {
-            if(b.ballLocation <= 12)
+            Ball b = new Ball();
+            if (b.ballLocation <= 12)
             {
                 Console.WriteLine($"Number {b.ballLocation} is in the first third. First third bets win");
             }
@@ -68,6 +83,7 @@ namespace Roulette
 
         public void Column()
         {
+            Ball b = new Ball();
             int column = b.ballLocation % 3;
             if(column == 0)
             {
@@ -89,12 +105,14 @@ namespace Roulette
 
         public void Row()
         {
+            Ball b = new Ball();
             string value = $"Row {b.row} Wins";
             Console.WriteLine(value);
         }
 
         public void TwoRows()
         {
+            Ball b = new Ball();
             //string value = $"Rows {} Win"
 
             if (b.row == 1)
