@@ -7,6 +7,7 @@ namespace Roulette
         static void Main(string[] args)
         {
             GameBoard g = new GameBoard();
+            
 
             g.IsColor();
             g.EvenOrOdd();
@@ -15,6 +16,7 @@ namespace Roulette
             g.Thirds();
             g.Column();
             g.Row();
+            g.TwoRows();
         }
     }
 }
