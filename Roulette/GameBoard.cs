@@ -13,9 +13,8 @@ namespace Roulette
         {
             cash = player.Money;
         }
-        public void IsColor(string s)
+        public void IsColor(Ball b, string s)
         {
-            Ball b = new Ball();
             string color = "";
             w.wheel.TryGetValue(b.ballLocation, out color );
 
@@ -33,9 +32,8 @@ namespace Roulette
             Console.WriteLine($"{b.ballLocation} is the winning number");
         }
 
-        public void EvenOrOdd(string s)
+        public void EvenOrOdd(Ball b, string s)
         {
-            Ball b = new Ball();
             if (b.ballLocation %2 == 0 && b.ballLocation != 38)
             {
                 Console.WriteLine("Even Bets Win");
@@ -67,9 +65,8 @@ namespace Roulette
             }
         }
 
-        public void LowHigh()
+        public void LowHigh(Ball b)
         {
-            Ball b = new Ball();
             if (b.ballLocation <= 18)
             {
                 Console.WriteLine("Low Bets Win");
@@ -81,9 +78,8 @@ namespace Roulette
         }
 
         //Dozens: rowthirds,1–12,13–24,25–36
-        public void Thirds()
+        public void Thirds(Ball b)
         {
-            Ball b = new Ball();
             if (b.ballLocation <= 12)
             {
                 Console.WriteLine($"Number {b.ballLocation} is in the first third. First third bets win");
@@ -102,9 +98,8 @@ namespace Roulette
             }
         }
 
-        public void Column()
+        public void Column(Ball b)
         {
-            Ball b = new Ball();
             int column = b.ballLocation % 3;
             if(column == 0)
             {
@@ -124,16 +119,14 @@ namespace Roulette
             }
         }
 
-        public void Row()
+        public void Row(Ball b)
         {
-            Ball b = new Ball();
             string value = $"Row {b.row} Wins";
             Console.WriteLine(value);
         }
 
-        public void TwoRows()
+        public void TwoRows(Ball b)
         {
-            Ball b = new Ball();
             //string value = $"Rows {} Win"
 
             if (b.row == 1)
