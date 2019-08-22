@@ -10,7 +10,6 @@ namespace Roulette
         
         public Wheel()
         {
-           
             wheel.Add(1, "red");
             wheel.Add(2, "black");
             wheel.Add(3, "red");
