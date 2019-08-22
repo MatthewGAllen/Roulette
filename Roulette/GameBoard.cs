@@ -7,33 +7,37 @@ namespace Roulette
     class GameBoard
     {
         Wheel w = new Wheel();
-        Ball b = new Ball();
-        int column { get; set; }
-        public void IsColor()
+        
+        int cash;
+        public GameBoard (Player player)
         {
-            cash = player.Money;
+            cash=player.Money;
         }
         public void IsColor(string s)
         {
             Ball b = new Ball();
             string color = "";
             w.wheel.TryGetValue(b.ballLocation, out color );
-            Console.WriteLine($"{color} wins the bet");
+
+            if (s == color)
+                cash += 100;
+            else
+                cash -= 100;
+
+            Console.WriteLine($"{color} wins the bet, you have {cash}");
         }
 
         public void WinningNumber()
         {
+            Ball b = new Ball();
             Console.WriteLine($"{b.ballLocation} is the winning number");
         }
 
         public void EvenOrOdd(string s)
         {
-            if(b.ballLocation %2 == 0 && b.ballLocation != 38)
+            Ball b = new Ball();
+            if (b.ballLocation %2 == 0 && b.ballLocation != 38)
             {
-                if(s == "even")
-                {
-                    Console.WriteLine("Even Bets Win");
-                }
                 Console.WriteLine("Even Bets Win");
             }
             else if(b.ballLocation %2 != 0 && b.ballLocation!= 37)
@@ -44,7 +48,8 @@ namespace Roulette
 
         public void LowHigh()
         {
-            if(b.ballLocation <= 18)
+            Ball b = new Ball();
+            if (b.ballLocation <= 18)
             {
                 Console.WriteLine("Low Bets Win");
             }
@@ -57,7 +62,8 @@ namespace Roulette
         //Dozens: rowthirds,1–12,13–24,25–36
         public void Thirds()
         {
-            if(b.ballLocation <= 12)
+            Ball b = new Ball();
+            if (b.ballLocation <= 12)
             {
                 Console.WriteLine($"Number {b.ballLocation} is in the first third. First third bets win");
             }
@@ -75,89 +81,17 @@ namespace Roulette
             }
         }
 
-        public void Row()
-        {
-            if(b.ballLocation <= 3)
-            {
-                Console.WriteLine("First Row Wins");
-            }
-
-            else if (b.ballLocation > 3 && b.ballLocation <= 6)
-            {
-                Console.WriteLine("Second Row Wins");
-            }
-
-            else if (b.ballLocation > 6 && b.ballLocation <= 9)
-            {
-                Console.WriteLine("Third Row Wins");
-            }
-
-            else if (b.ballLocation > 9 && b.ballLocation <= 12)
-            {
-                Console.WriteLine("Fourth Row Wins");
-            }
-
-            else if (b.ballLocation > 12 && b.ballLocation <= 15)
-            {
-                Console.WriteLine("Fifth Row Wins");
-            }
-
-            else if (b.ballLocation > 15 && b.ballLocation <= 18)
-            {
-                Console.WriteLine("Sixth Row Wins");
-            }
-
-            else if (b.ballLocation > 18 && b.ballLocation <= 21)
-            {
-                Console.WriteLine("Seventh Row Wins");
-            }
-
-            else if (b.ballLocation > 21 && b.ballLocation <= 24)
-            {
-                Console.WriteLine("Eighth Row Wins");
-            }
-
-            else if (b.ballLocation > 24 && b.ballLocation <= 27)
-            {
-                Console.WriteLine("Ninth Row Wins");
-            }
-
-            else if (b.ballLocation > 27 && b.ballLocation <= 30)
-            {
-                Console.WriteLine("Tenth Row Wins");
-            }
-
-            else if (b.ballLocation > 30 && b.ballLocation <= 33)
-            {
-                Console.WriteLine("Eleventh Row Wins");
-            }
-
-            else if (b.ballLocation > 33 && b.ballLocation <= 36)
-            {
-                Console.WriteLine("Twelfth Row Wins");
-            }
-
-            else if (b.ballLocation == 37 || b.ballLocation == 38)
-            {
-                Console.WriteLine("Green Row Wins");
-            }
-        }
-
         public void Column()
         {
-            column = b.ballLocation % 3;
-            
+            Ball b = new Ball();
+            int column = b.ballLocation % 3;
+            if(column == 0)
+            {
+                column = 3;
+            }
             if(b.ballLocation < 37)
             {
-                if(column == 0)
-                {
-                    Console.WriteLine("Column 3 wins the bet");
-                }
-                else
-                {
-                    Console.WriteLine($"Column {column} wins the bet");
-                }
-                
+                Console.WriteLine($"Column {column} wins the bet");
             }
             else if(b.ballLocation == 37)
             {
@@ -169,32 +103,77 @@ namespace Roulette
             }
         }
 
-        public void SplitBet()
+        public void Row()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Winning bets are: ");
-            int betRight = b.ballLocation + 1;
-            int betLeft = b.ballLocation - 1;
-            int betUp = b.ballLocation - 3;
-            int betDown = b.ballLocation + 3;
+            Ball b = new Ball();
+            string value = $"Row {b.row} Wins";
+            Console.WriteLine(value);
+        }
 
-            if(betRight%3 == column +1 || betRight%3 == (column +1)%3)
+        public void TwoRows()
+        {
+            Ball b = new Ball();
+            //string value = $"Rows {} Win"
+
+            if (b.row == 1)
             {
-                sb.Append($"{b.ballLocation}\\{betRight} ");
+                Console.WriteLine("Rows 1 and 2 win"); 
             }
-            if(betLeft%3 == column -1)
+
+            if (b.row == 2)
             {
-                sb.Append($"{b.ballLocation}\\{betLeft} ");
+                Console.WriteLine("Rows 1, 2 & 3 win");
             }
-            if(betUp%3 == column && betUp > 0)
+
+            if (b.row == 3)
             {
-                sb.Append($"{b.ballLocation}\\{betUp} ");
+                Console.WriteLine("Rows 2, 3 & 4 win");
             }
-            if(betDown%3 == column && betDown <=36)
+
+            if (b.row == 4)
             {
-                sb.Append($"{b.ballLocation}\\{betDown} ");
+                Console.WriteLine("Rows 3, 4 & 5 win");
             }
-            Console.WriteLine(sb.ToString());
+
+            if (b.row == 5)
+            {
+                Console.WriteLine("Rows 4, 5 & 6 win");
+            }
+
+            if (b.row == 6)
+            {
+                Console.WriteLine("Rows 5, 6 & 7 win");
+            }
+
+            if (b.row == 7)
+            {
+                Console.WriteLine("Rows 6, 7 & 8 win");
+            }
+
+            if (b.row == 8)
+            {
+                Console.WriteLine("Rows 7, 8 & 9 win");
+            }
+
+            if (b.row == 9)
+            {
+                Console.WriteLine("Rows 8, 9 & 10 win");
+            }
+
+            if (b.row == 10)
+            {
+                Console.WriteLine("Rows 9, 10 & 11 win");
+            }
+
+            if (b.row == 11)
+            {
+                Console.WriteLine("Rows 10, 11 & 12 win");
+            }
+
+            if (b.row == 12)
+            {
+                Console.WriteLine("Rows 11 & 12 win");
+            }
         }
     }
 }
