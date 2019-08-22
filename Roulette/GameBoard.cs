@@ -11,7 +11,7 @@ namespace Roulette
         int cash;
         public GameBoard (Player player)
         {
-            cash=player.Money;
+            cash = player.Money;
         }
         public void IsColor(string s)
         {
@@ -39,10 +39,31 @@ namespace Roulette
             if (b.ballLocation %2 == 0 && b.ballLocation != 38)
             {
                 Console.WriteLine("Even Bets Win");
+                Console.WriteLine($"{b.ballLocation} is the winning number");
+                if (s == "even")
+                {
+                    cash += 100;
+                    Console.WriteLine($"You have {cash}");
+                } else
+                {
+                    cash -= 100;
+                    Console.WriteLine($"You have {cash}");
+                }
             }
             else if(b.ballLocation %2 != 0 && b.ballLocation!= 37)
             {
                 Console.WriteLine("Odd Bets Win");
+                Console.WriteLine($"{b.ballLocation} is the winning number");
+                if (s == "odd")
+                {
+                    cash += 100;
+                    Console.WriteLine($"You have {cash}");
+                }
+                else
+                {
+                    cash -= 100;
+                    Console.WriteLine($"You have {cash}");
+                }
             }
         }
 
