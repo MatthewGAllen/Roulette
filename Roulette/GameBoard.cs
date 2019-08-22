@@ -8,7 +8,7 @@ namespace Roulette
     {
         Wheel w = new Wheel();
         Ball b = new Ball();
-
+        int column { get; set; }
         public void IsColor()
         {
             string color = "";
@@ -136,14 +136,19 @@ namespace Roulette
 
         public void Column()
         {
-            int column = b.ballLocation % 3;
-            if(column == 0)
-            {
-                column = 3;
-            }
+            column = b.ballLocation % 3;
+            
             if(b.ballLocation < 37)
             {
-                Console.WriteLine($"Column {column} wins the bet");
+                if(column == 0)
+                {
+                    Console.WriteLine("Column 3 wins the bet");
+                }
+                else
+                {
+                    Console.WriteLine($"Column {column} wins the bet");
+                }
+                
             }
             else if(b.ballLocation == 37)
             {
@@ -153,6 +158,34 @@ namespace Roulette
             {
                 Console.WriteLine("00 wins over columns");
             }
+        }
+
+        public void SplitBet()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Winning bets are: ");
+            int betRight = b.ballLocation + 1;
+            int betLeft = b.ballLocation - 1;
+            int betUp = b.ballLocation - 3;
+            int betDown = b.ballLocation + 3;
+
+            if(betRight%3 == column +1 || betRight%3 == (column +1)%3)
+            {
+                sb.Append($"{b.ballLocation}\\{betRight} ");
+            }
+            if(betLeft%3 == column -1)
+            {
+                sb.Append($"{b.ballLocation}\\{betLeft} ");
+            }
+            if(betUp%3 == column && betUp > 0)
+            {
+                sb.Append($"{b.ballLocation}\\{betUp} ");
+            }
+            if(betDown%3 == column && betDown <=36)
+            {
+                sb.Append($"{b.ballLocation}\\{betDown} ");
+            }
+            Console.WriteLine(sb.ToString());
         }
     }
 }

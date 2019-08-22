@@ -15,6 +15,7 @@ namespace Roulette
             g.Thirds();
             g.Column();
             g.Row();
+            g.SplitBet();
         }
     }
 }
