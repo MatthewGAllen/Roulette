@@ -38,6 +38,9 @@ namespace Roulette
                     case "odd":
                         g.EvenOrOdd(b, input);
                         break;
+                    case "corner":
+                        g.Corners(b);
+                        break;
 
 
                 }
