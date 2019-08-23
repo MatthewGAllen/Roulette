@@ -77,7 +77,6 @@ namespace Roulette
             }
         }
 
-        //Dozens: rowthirds,1–12,13–24,25–36
         public void Thirds(Ball b)
         {
             if (b.ballLocation <= 12)
@@ -196,7 +195,7 @@ namespace Roulette
             //To get the column of the ball location
             int col = b.ballLocation % 3;
             //If the ball is in the third column the result of b.ballLocation%3 would be 0 so change it to the correct column number of 3
-            if(col == 0 && col != 37 && col != 38)
+            if(col == 0 && b.ballLocation != 37 && b.ballLocation != 38)
             {
                 col = 3;
             }
@@ -261,6 +260,75 @@ namespace Roulette
             else if(b.ballLocation == 38)
             {
                 Console.WriteLine("No corner bets have won! Ball Landed on 00");
+            }
+        }
+
+        public void SplitBet(Ball b)
+        {
+            int col = b.ballLocation % 3;
+            if(col == 0 && b.ballLocation != 37 && b.ballLocation != 38)
+            {
+                col = 3;
+            }
+
+            if(b.ballLocation != 37 && b.ballLocation != 38)
+            {
+                if(b.row != 1 && b.row != 12)
+                {
+                    if(col == 1)
+                    {
+                        Console.WriteLine($"The winning split bets are: {b.ballLocation-3}/{b.ballLocation} {b.ballLocation}/{b.ballLocation+1} " +
+                            $"{b.ballLocation}/{b.ballLocation+3}");
+                    }
+                    else if(col == 2)
+                    {
+                        Console.WriteLine($"The winning split bets are: {b.ballLocation - 3}/{b.ballLocation} {b.ballLocation - 1}/{b.ballLocation} " +
+                            $"{b.ballLocation}/{b.ballLocation + 1} {b.ballLocation}/{b.ballLocation + 3}");
+                    }
+                    else if(col == 3)
+                    {
+                        Console.WriteLine($"The winning split bets are: {b.ballLocation - 3}/{b.ballLocation} {b.ballLocation - 1}/{b.ballLocation} " +
+                            $"{b.ballLocation}/{b.ballLocation + 3}");
+                    }
+                }
+                else if(b.row == 1)
+                {
+                    if(col == 1)
+                    {
+                        Console.WriteLine($"The winning split bets are: 1/2 1/4");
+                    }
+                    else if(col == 2)
+                    {
+                        Console.WriteLine($"The winning split bets are: 1/2 2/3 2/5");
+                    }
+                    else if(col == 3)
+                    {
+                        Console.WriteLine($"The winning split bets are: 2/3 3/6");
+                    }
+                }
+                else if(b.row == 12)
+                {
+                    if(col == 1)
+                    {
+                        Console.WriteLine($"The winning split bets are: 31/34 34/35");
+                    }
+                    else if(col == 2)
+                    {
+                        Console.WriteLine($"The winning split bets are: 32/35 34/35 35/36");
+                    }
+                    else if(col == 3)
+                    {
+                        Console.WriteLine($"The winning split bets are: 33/36 35/36");
+                    }
+                }
+            }
+            else if(b.ballLocation == 37)
+            {
+                Console.WriteLine("No split bets won! Ball landed on 0");
+            }
+            else if(b.ballLocation == 38)
+            {
+                Console.WriteLine("No split bets won! Ball landed on 00");
             }
         }
     }

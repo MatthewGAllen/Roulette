@@ -41,6 +41,9 @@ namespace Roulette
                     case "corner":
                         g.Corners(b);
                         break;
+                    case "split":
+                        g.SplitBet(b);
+                        break;
 
 
                 }
