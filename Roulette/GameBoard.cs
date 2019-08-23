@@ -98,7 +98,7 @@ namespace Roulette
             }
         }
 
-        public void Column(Ball b)
+        public int Column(Ball b)
         {
             int column = b.ballLocation % 3;
             if(column == 0)
@@ -117,6 +117,7 @@ namespace Roulette
             {
                 Console.WriteLine("00 wins over columns");
             }
+            return column;
         }
 
         public void Row(Ball b)
@@ -187,6 +188,79 @@ namespace Roulette
             if (b.row == 12)
             {
                 Console.WriteLine("Rows 11 & 12 win");
+            }
+        }
+        
+        public void Corners(Ball b)
+        {
+            //To get the column of the ball location
+            int col = b.ballLocation % 3;
+            //If the ball is in the third column the result of b.ballLocation%3 would be 0 so change it to the correct column number of 3
+            if(col == 0 && col != 37 && col != 38)
+            {
+                col = 3;
+            }
+            
+            if(b.ballLocation != 37 && b.ballLocation != 38)
+            {
+                if(b.row != 1 && b.row != 12)
+                {
+                    if(col == 1)
+                    {
+                        Console.WriteLine($"The winning corner bets are: {b.ballLocation - 3}/{b.ballLocation - 2}/{b.ballLocation}/{b.ballLocation + 1} " +
+                            $"and {b.ballLocation}/{b.ballLocation + 1}/{b.ballLocation + 3}/{b.ballLocation + 4}");
+                    }
+                    else if(col == 2)
+                    {
+                        Console.WriteLine($"The winning corner bets are: {b.ballLocation - 4}/{b.ballLocation - 3}/{b.ballLocation - 1}/{b.ballLocation} " +
+                            $"{b.ballLocation - 3}/{b.ballLocation - 2}/{b.ballLocation}/{b.ballLocation + 1} " +
+                            $"{b.ballLocation-1}/{b.ballLocation}/{b.ballLocation+2}/{b.ballLocation+3} " +
+                            $"{b.ballLocation}/{b.ballLocation+1}/{b.ballLocation+3}/{b.ballLocation+4}");
+                    }
+                    else if(col == 3)
+                    {
+                        Console.WriteLine($"The winning corner bets are: {b.ballLocation - 4}/{b.ballLocation - 3}/{b.ballLocation - 1}/{b.ballLocation} " +
+                            $"{b.ballLocation - 1}/{b.ballLocation}/{b.ballLocation + 2}/{b.ballLocation + 3}");
+                    }
+                }
+                else if(b.row == 1)
+                {
+                    if(col == 1)
+                    {
+                        Console.WriteLine($"The winning corner bets are: 1/2/4/5");
+                    }
+                    else if(col == 2)
+                    {
+                        Console.WriteLine($"The winning corner bets are: 1/2/4/5 2/3/5/6");
+                    }
+                    else if(col == 3)
+                    {
+                        Console.WriteLine("The winning corner bets are: 2/3/5/6");
+                    }
+                }
+                else if(b.row == 12)
+                {
+                    if(col == 1)
+                    {
+                        Console.WriteLine($"The winning corner bets are: 31/32/34/35");
+                    }
+                    else if(col == 2)
+                    {
+                        Console.WriteLine($"The winning corner bets are: 31/32/34/35 32/33/35/36");
+                    }
+                    else if(col == 3)
+                    {
+                        Console.WriteLine("The winning corner bets are: 32/33/35/36");
+                    }
+                }
+            }
+            else if(b.ballLocation == 37)
+            {
+                Console.WriteLine("No corner bets have won! Ball landed on 0");
+            }
+            else if(b.ballLocation == 38)
+            {
+                Console.WriteLine("No corner bets have won! Ball Landed on 00");
             }
         }
     }
