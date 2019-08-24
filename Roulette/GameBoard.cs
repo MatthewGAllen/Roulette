@@ -26,9 +26,9 @@ namespace Roulette
             Console.WriteLine($"{color} wins the bet, you have {cash}");
         }
 
-        public void WinningNumber()
+        public void WinningNumber(Ball b)
         {
-            Ball b = new Ball();
+            
             Console.WriteLine($"{b.ballLocation} is the winning number");
         }
 
